@@ -9,6 +9,9 @@
             "root": "backend",
             "routePrefix": "/_/backend",
             "entrypoint": "main.go"
-        }
-    }
+    },
+    "rewrites": [
+        { "source": "/_/backend/:path*", "destination": "/_/backend/:path*" },
+        { "source": "/(.*)", "destination": "/index.html" }
+    ]
 }
