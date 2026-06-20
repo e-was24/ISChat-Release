@@ -81,14 +81,21 @@
     filter: drop-shadow(0 0 5px #00000085);
 }
 
+.login-cover .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .login-cover input {
     padding: 10px;
     border-radius: 0 10px 0 10px;
     border: none;
-    margin: 5px;
-    width: 60%;
+    margin: 10px 0;
+    width: 85%;
     background: #ffffff75;
-    color: var(--main);
+    color: #fff;
     cursor: pointer;
     transition: ease-in-out .3s;
     outline: none;

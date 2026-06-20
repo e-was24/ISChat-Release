@@ -91,7 +91,7 @@ function Login() {
 
                 {error && <p style={{ color: "#ff8080", textAlign: "center", fontSize: ".85em" }}>{error}</p>}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="login-form">
                     <input
                         type="email"
                         value={email}
