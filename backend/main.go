@@ -54,6 +54,11 @@ func main() {
 	http.HandleFunc("/user/profile", corsMiddleware(handlers.GetProfileHandler))
 	http.HandleFunc("/user/update", corsMiddleware(handlers.UpdateProfileHandler))
 
-	log.Println("Server berjalan di :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	port := config.GetEnv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	log.Printf("Server berjalan di :%s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

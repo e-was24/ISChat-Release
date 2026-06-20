@@ -9,7 +9,7 @@ import (
 
 func LoadEnv() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("failed load .env")
+		log.Println("Peringatan: file .env tidak ditemukan, menggunakan variable lingkungan sistem.")
 	}
 }
 
