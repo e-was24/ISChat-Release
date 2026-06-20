@@ -7,7 +7,7 @@
         },
         "backend": {
             "root": "backend",
-            "routePrefix": "/backend",
+            "routePrefix": "/_/backend",
             "entrypoint": "main.go"
         }
     },
