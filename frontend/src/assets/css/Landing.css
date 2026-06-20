@@ -1,0 +1,49 @@
+
+:root {
+    --bg-page: #313236;
+    --chat-zone: #1c1d1f;
+    --ice-white: #ffff;
+    --main: #52575D;
+    --chat-card: #52575d7a;
+    --second: #c69991;
+    --link: #9BB4C0;
+    --btn-1: #767F9E;
+    --btn-2: #9FA1FF;
+    --title: 'Black Ops One', sans-serif
+}
+
+.Landing-cover {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.header-bar-cover {
+    position: relative;
+    width: 100%;
+    z-index: 999;
+}
+
+.outlate {
+    flex: 1;
+    background-color: var(--chat-zone);
+    overflow-y: auto;
+    width: 100%;
+}
+
+.bottom-bar-cover {
+    position: relative;
+    width: 100%;
+    z-index: 99;
+}
+
+.add-num-section {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 999;
+}
+
+

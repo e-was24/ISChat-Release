@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Removed local :root to use global variables from index.css */
+
+
+.headerBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    user-select: none;
+}
+
+.headerBar .header-title h2 span,
+.headerBar .header-title h2 {
+    font-family: 'Black Ops One', sans-serif;
+}
+
+.menu {
+    display: flex;
+    gap: .8rem;
+}
+
+.menu .menu-f {
+    cursor: pointer;
+}
+
+/* popup */
+
+.backdrop-popup {
+    z-index: 1;
+    background: #0000007a;
+    backdrop-filter: blur(1px);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.popup-cover {
+    position: fixed;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 320px;
+    min-height: 40vh;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--bg);
+    z-index: 999;
+}
+
+.popup-cover .header-popup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+}
+
+.popup-cover .header-popup .popup-close {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.popup-cover .header-popup .popup-title {
+    padding: 0;
+    margin: 0;
+}
+
+.popup-cover .header-popup .popup-title h4 {
+    font-size: 1.2;
+}
+
+.popup-cover .header-popup .popup-title .setting {
+    font-size: .8em;
+    font-weight: 200;
+}
+
+.main-menu-popup {
+    margin-top: 20px;
+}
+
+.main-menu-popup .menu-cover {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+}
+
+.main-menu-popup .menu-cover .menu-link {
+    padding: 5px 0;
+    text-decoration: none;
+    color: var(--text-h);
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9em;
+}

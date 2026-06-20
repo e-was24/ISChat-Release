@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.bottom-bar {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.Link {
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    gap: 4px;
+    transition: color 0.3s;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.Link span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.Link.active {
+    color: var(--text-h);
+    font-weight: bold;
+}
+
+.Link.active span {
+    background-color: var(--accent-bg);
+    color: var(--accent);
+}
+
+.Link svg {
+    fill: currentColor;
+}

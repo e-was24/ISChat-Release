@@ -1,0 +1,214 @@
+.chat-room-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg);
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 20px 20px;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    font-family: Segoe UI, sans-serif;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+.chat-room-header {
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 12px;
+    height: 60px;
+    border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
+}
+
+.room-back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.room-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.room-user-info h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.room-user-info span {
+    font-size: 0.75rem;
+    color: var(--accent); /* Accent Online */
+}
+
+/* CHAT BUBBLE AREA */
+.chat-messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.message-bubble-row {
+    display: flex;
+    width: 100%;
+}
+
+.message-bubble-row.me {
+    justify-content: flex-end;
+}
+
+.message-bubble-row.them {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 85%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+    word-wrap: break-word;
+    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+}
+
+.me .message-bubble {
+    background-color: #6b21a8; /* Ungu Gelap (Purple-700) lebih cocok untuk Dark Mode */
+    color: #fff;
+    border-top-right-radius: 0px;
+}
+
+.them .message-bubble {
+    background-color: var(--code-bg); /* Background Bubble Lawan Chat */
+    color: var(--text-h);
+    border-top-left-radius: 0px;
+}
+
+.message-text {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    padding-bottom: 4px;
+}
+
+.message-time {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 0.68rem;
+    color: rgba(233, 237, 239, 0.6);
+    text-align: right;
+}
+
+.tick-status {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
+/* INPUT SECTION */
+.chat-input-bar {
+    background-color: var(--bg);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+.chat-input-bar input {
+    flex: 1;
+    background-color: var(--code-bg);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: var(--text-h);
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.chat-input-bar input::placeholder {
+    color: #8696a0;
+}
+
+.send-msg-btn {
+    background-color: var(--accent); /* Tombol Accent */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.send-msg-btn:hover {
+    background-color: #008f72;
+}
+
+/* DELETE MODAL */
+.delete-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.delete-modal-content {
+    background: var(--bg);
+    width: 80%;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    color: var(--text-h);
+}
+
+.delete-modal-content h4 {
+    margin: 0 0 15px 0;
+    font-weight: 500;
+}
+
+.delete-modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.delete-option-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-align: right;
+    background: none;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.delete-option-btn.cancel {
+    color: var(--text);
+}
+
+.delete-option-btn:active {
+    background-color: var(--accent-bg);
+}

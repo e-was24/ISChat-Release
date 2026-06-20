@@ -1,0 +1,173 @@
+.profile-page-wrapper {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    font-family: Segoe UI, Helvetica Neue, Arial, sans-serif;
+}
+
+.profile-header {
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 20px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.profile-header h2 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.avatar-section {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0;
+    background-color: var(--bg);
+}
+
+.avatar-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.avatar-container:hover .camera-overlay {
+    opacity: 1;
+}
+
+.info-list {
+    background-color: var(--bg);
+}
+
+.info-item {
+    display: flex;
+    padding: 20px 24px;
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-icon {
+    padding-top: 4px;
+}
+
+.info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-content label {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.conntact-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 15px;
+    background: var(--bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    user-select: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.display-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display-box p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.edit-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.edit-box {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-box input {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    color: var(--text-h);
+    font-size: 1rem;
+    padding: 4px 0;
+    outline: none;
+}
+
+.edit-box button {
+    background-color: var(--accent);
+    border: none;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.hint-text {
+    font-size: 0.75rem;
+    color: var(--text);
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+.phone-display {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-h);
+}

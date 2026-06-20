@@ -1,0 +1,182 @@
+=== Fitur Telfon ===
+
+==== main.go ====
+
+package main
+
+import (
+	"log"
+	"net/http"
+	"sync"
+
+	"github.com/gorilla/websocket"
+)
+
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true // Sesuaikan untuk produksi
+	},
+}
+
+// Menyimpan semua koneksi aktif
+var clients = make(map[*websocket.Conn]bool)
+var mutex = &sync.Mutex{}
+
+func handleConnections(w http.ResponseWriter, r *http.Request) {
+	ws, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer ws.Close()
+
+	mutex.Lock()
+	clients[ws] = true
+	mutex.Unlock()
+
+	log.Println("User terhubung ke Signaling Server")
+
+	for {
+		var msg map[string]interface{}
+		// Membaca pesan dari satu user
+		err := ws.ReadJSON(&msg)
+		if err != nil {
+			mutex.Lock()
+			delete(clients, ws)
+			mutex.Unlock()
+			break
+		}
+
+		// Broadcast pesan ke user lainnya (sederhana)
+		mutex.Lock()
+		for client := range clients {
+			if client != ws {
+				err := client.WriteJSON(msg)
+				if err != nil {
+					client.Close()
+					delete(clients, client)
+				}
+			}
+		}
+		mutex.Unlock()
+	}
+}
+
+func main() {
+	http.HandleFunc("/ws", handleConnections)
+	log.Println("Signaling server berjalan di :8080")
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
+
+=== app.jsx === react panel
+
+import React, { useEffect, useRef, useState } from 'react';
+
+const configuration = {
+  iceServers: [
+    { urls: 'stun:stun.l.google.com:19302' } // STUN server gratis dari Google
+  ]
+};
+
+function App() {
+  const [isCalling, setIsCalling] = useState(false);
+  const localAudioRef = useRef(null);
+  const remoteAudioRef = useRef(null);
+  const peerConnection = useRef(null);
+  const socket = useRef(null);
+  const localStream = useRef(null);
+
+  useEffect(() => {
+    // Hubungkan ke Golang Signaling Server
+    socket.current = new WebSocket('ws://localhost:8080/ws');
+
+    socket.current.onmessage = async (message) => {
+      const data = JSON.parse(message.data);
+
+      if (data.offer) {
+        await handleOffer(data.offer);
+      } else if (data.answer) {
+        await peerConnection.current.setRemoteDescription(new RTCSessionDescription(data.answer));
+      } else if (data.candidate) {
+        try {
+          await peerConnection.current.addIceCandidate(new RTCIceCandidate(data.candidate));
+        } catch (e) {
+          console.error("Gagal menambahkan ICE candidate", e);
+        }
+      }
+    };
+
+    return () => socket.current.close();
+  }, []);
+
+  // Setup WebRTC dan Media
+  const setupPeerConnection = async () => {
+    peerConnection.current = new RTCPeerConnection(configuration);
+
+    // Ambil audio lokal
+    localStream.current = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+
+    // Masukkan track audio ke WebRTC
+    localStream.current.getTracks().forEach(track => {
+      peerConnection.current.addTrack(track, localStream.current);
+    });
+
+    // Tangkap audio dari lawan bicara
+    peerConnection.current.ontrack = (event) => {
+      if (remoteAudioRef.current) {
+        remoteAudioRef.current.srcObject = event.streams[0];
+      }
+    };
+
+    // Kirim ICE Candidate ke lawan bicara lewat signaling server
+    peerConnection.current.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.current.send(JSON.stringify({ candidate: event.candidate }));
+      }
+    };
+  };
+
+  // 1. Mulai Panggilan (Aktor Utama)
+  const startCall = async () => {
+    setIsCalling(true);
+    await setupPeerConnection();
+
+    const offer = await peerConnection.current.createOffer();
+    await peerConnection.current.setLocalDescription(offer);
+
+    // Kirim offer ke lawan bicara
+    socket.current.send(JSON.stringify({ offer }));
+  };
+
+  // 2. Menerima Panggilan (Lawan Bicara)
+  const handleOffer = async (offer) => {
+    await setupPeerConnection();
+
+    await peerConnection.current.setRemoteDescription(new RTCSessionDescription(offer));
+    const answer = await peerConnection.current.createAnswer();
+    await peerConnection.current.setLocalDescription(answer);
+
+    // Kirim balik jawaban (answer)
+    socket.current.send(JSON.stringify({ answer }));
+  };
+
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <h2>Fitur Telepon (Voice Call)</h2>
+      <div>
+        {/* Audio tag tersembunyi/terbuka untuk memutar suara */}
+        <audio ref={remoteAudioRef} autoPlay controls style={{ marginTop: '10px' }} />
+      </div>
+
+      <div style={{ marginTop: '20px' }}>
+        <button onClick={startCall} disabled={isCalling} style={{ padding: '10px 20px', background: 'green', color: 'white', border: 'none', borderRadius: '5px' }}>
+          {isCalling ? 'Sedang Menelepon...' : 'Hubungi / Telepon'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Removed local :root to use global variables from index.css */
+
+
+/* headers */
+
+.headers-conntact-zone {
+    padding: 20px 0;
+    width: 100%;
+}
+
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrapper svg {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+}
+
+.search-input-wrapper input{
+    width: 100%;
+    border-radius: 50px;
+    padding: 15px 0px;
+    padding-left: 40px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    opacity: .5;
+}
+
+.search-input-wrapper input:focus{
+    opacity: 1;
+}
+
+.search-input-wrapper input::placeholder {
+    color: var(--chat-card);
+}
+
+
+/* conntact design */
+
+.contact-zone {
+    padding: 10px;
+    min-height: 100vh;
+    height: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    background: var(--bg);
+}
+
+.contact-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    box-sizing: border-box;
+    padding-right: 15px;
+    background: linear-gradient(45deg, var(--accent-bg), var(--bg));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    user-select: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.start-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px 0 0 10px;
+}
+
+.contact-card .center-items {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.contact-card .center-items h3 {
+    padding: 0;
+    margin-bottom: 15px;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.contact-card .center-items p {
+    font-size: .8em;
+    color: var(--text);
+}
+
+.contact-card .end-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: .5em;
+}
+
+.contact-card .end-item .chat-status {
+    transform: scale(.8);
+}
+
+.contact-card .end-item .chat-status svg {
+    fill: var(--accent);
+}

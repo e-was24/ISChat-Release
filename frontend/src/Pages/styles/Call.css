@@ -1,0 +1,103 @@
+/* Call.css */
+.call-container {
+    background-color: var(--bg);
+    min-height: calc(100vh - 120px);
+    color: var(--text);
+    padding-bottom: 20px;
+}
+
+.call-header {
+    padding: 20px;
+    background-color: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+}
+
+.link-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.item-text h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.item-text p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.recent-header {
+    padding: 15px 20px 5px;
+}
+
+.recent-header h3 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--accent);
+}
+
+.call-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.call-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+.call-avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.call-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.call-icon.missed {
+    color: #f15c5c;
+}
+
+.call-action {
+    margin-left: auto;
+}
+
+.fab-call {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
